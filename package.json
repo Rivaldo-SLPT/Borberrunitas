@@ -1,0 +1,17 @@
+{
+  "name": "inca-bomberman",
+  "version": "1.0.0",
+  "description": "Bomberman 2D multijugador en tiempo real con tematica Inca, netcode autoritativo y compensacion de lag.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}

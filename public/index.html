@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inca Bomberman</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ===================== MAIN MENU ===================== -->
+  <section id="screen-menu" class="screen active">
+    <div class="panel menu-panel">
+      <img class="cover-art" src="assets/ui/cover.webp" alt="Inca Bomberman" />
+
+      <div class="volume-controls">
+        <label>Master
+          <input type="range" id="vol-master" min="0" max="1" step="0.01" />
+        </label>
+        <label>Musica
+          <input type="range" id="vol-music" min="0" max="1" step="0.01" />
+        </label>
+        <label>Efectos
+          <input type="range" id="vol-sfx" min="0" max="1" step="0.01" />
+        </label>
+      </div>
+
+      <div class="menu-actions">
+        <button id="btn-create-room" class="btn btn-primary">Crear Sala</button>
+        <button id="btn-show-join" class="btn btn-secondary">Unirse con Codigo</button>
+      </div>
+
+      <div id="join-form" class="join-form hidden">
+        <input id="input-room-code" maxlength="4" placeholder="CODIGO" autocomplete="off" />
+        <button id="btn-confirm-join" class="btn btn-primary">Entrar</button>
+      </div>
+
+      <div id="menu-name-row" class="menu-name-row">
+        <input id="input-player-name" maxlength="16" placeholder="Tu nombre" autocomplete="off" />
+      </div>
+
+      <p id="menu-error" class="error-text"></p>
+    </div>
+  </section>
+
+  <!-- ===================== LOBBY / CHARACTER SELECT ===================== -->
+  <section id="screen-lobby" class="screen">
+    <div class="panel lobby-panel">
+      <div class="lobby-header">
+        <h2>Sala <span id="lobby-room-code">----</span></h2>
+        <button id="btn-leave-lobby" class="btn btn-small">Salir</button>
+      </div>
+
+      <div class="character-grid" id="character-grid"></div>
+
+      <div class="map-select" id="map-select">
+        <div class="map-select-label">Mapa</div>
+        <div class="map-select-options" id="map-select-options"></div>
+      </div>
+
+      <div class="player-list" id="player-list"></div>
+
+      <div class="lobby-footer">
+        <button id="btn-ready" class="btn btn-secondary">Listo</button>
+        <button id="btn-start-game" class="btn btn-primary hidden">Iniciar Partida</button>
+      </div>
+      <p id="lobby-error" class="error-text"></p>
+    </div>
+  </section>
+
+  <!-- ===================== GAME ===================== -->
+  <section id="screen-game" class="screen">
+    <div class="hud">
+      <div class="hud-left">
+        <span class="hud-room">Sala: <b id="hud-room-code">----</b></span>
+        <span class="hud-timer" id="hud-timer">03:00</span>
+      </div>
+      <div class="hud-players" id="hud-players"></div>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="game-canvas"></canvas>
+    </div>
+  </section>
+
+  <!-- ===================== END SCREEN ===================== -->
+  <section id="screen-end" class="screen">
+    <div class="panel end-panel">
+      <h2 id="end-title">Fin de la partida</h2>
+      <table class="standings" id="standings-table">
+        <thead>
+          <tr><th>#</th><th>Jugador</th><th>Puntaje</th><th>Vidas</th></tr>
+        </thead>
+        <tbody id="standings-body"></tbody>
+      </table>
+      <button id="btn-back-to-lobby" class="btn btn-primary">Volver al Lobby</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="/shared/config.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/soundManager.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
